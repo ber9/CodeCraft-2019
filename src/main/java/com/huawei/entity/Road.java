@@ -4,6 +4,9 @@ public class Road {
     private String id;
     private int length;
     private int speed;
+    /**
+     * 车道数目
+     */
     private int channel;
     private String from;
     private String to;

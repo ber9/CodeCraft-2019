@@ -16,9 +16,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class test {
-    public static void main(String[] args) {
-        String carPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\car.txt",
-                roadPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
+    /*public static void main(String[] args) {
+        String carPath = "/home/berg/applications/CodeCraft-2019/src/main/java/com/huawei/car.txt",
+                roadPath = "/home/berg/applications/CodeCraft-2019/src/main/java/com/huawei/road.txt";
         try {
             List<List<Path>> paths = kShortestPaths(carPath, roadPath);
             List<Path> answer = new ArrayList<>();
@@ -26,7 +26,7 @@ public class test {
                 Path path = pathList.get(0);
                 answer.add(path);
             }
-            writeAnswer(answer, "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\answer.txt");
+            writeAnswer(answer, "answer.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class test {
 
     public static List<List<Path>> kShortestPaths(String carPath, String roadPath) throws IOException {
         long stTime = System.currentTimeMillis();
-        int K = 10;
+        int K = 100;
         Graph graph = new Graph(roadPath);
         List<Car> cars = new ReadUtil().readCarFile(carPath);
         List<List<Path>> carPaths = new ArrayList<>();
@@ -89,11 +89,11 @@ public class test {
         List<Path> ksp;
         LazyEppstein lazyEppsteinAlgorithm = new LazyEppstein();
         ksp = lazyEppsteinAlgorithm.ksp(graph, car.getFrom(), car.getTo(), k);
-        /*int n = 0;
+        *//*int n = 0;
         for (Path p : ksp) {
             if(n<10)
                 System.out.println(++n + ") " + p);
-        }*/
+        }*//*
         return ksp;
-    }
+    }*/
 }

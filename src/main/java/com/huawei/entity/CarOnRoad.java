@@ -11,11 +11,11 @@ public class CarOnRoad {
     private String roadId;
     private Car car;
     private CarStatus carStatus;
-    private String position;
+    private int position;
     private int startTime;
     private Queue<String> path;
 
-    public CarOnRoad(String roadId, Car car, CarStatus carStatus, String position, int startTime, Queue<String> path) {
+    public CarOnRoad(String roadId, Car car, CarStatus carStatus, int position, int startTime, Queue<String> path) {
         this.roadId = roadId;
         this.car = car;
         this.carStatus = carStatus;
@@ -48,11 +48,11 @@ public class CarOnRoad {
         this.carStatus = carStatus;
     }
 
-    public String getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 
