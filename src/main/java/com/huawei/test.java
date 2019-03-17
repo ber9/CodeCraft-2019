@@ -9,7 +9,7 @@ import com.huawei.graph.ksp.LazyEppstein;
 import com.huawei.graph.util.Path;
 import com.huawei.util.ReadUtil;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -17,11 +17,33 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-        String carPath = "B:\\GSM\\Documents\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\car.txt",roadPath = "B:\\GSM\\Documents\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
+        String carPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\car.txt",
+                roadPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
         try {
             kShortestPaths(carPath, roadPath);
-            CarStatus m = CarStatus.ARRIVED;
-            System.out.println(CarStatus.ARRIVED.equals(m));
+            List<List<Path>> paths = kShortestPaths(carPath, roadPath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeAnswer(List<Path> paths, String answerPath){
+        File answer = new File(answerPath);
+        try {
+            answer.createNewFile();
+            FileWriter writer = new FileWriter(answer);
+            BufferedWriter out = new BufferedWriter(writer);
+            for(Path path:paths){
+                String carId = path.getCarId();
+                String finalPath = carId;
+                finalPath = finalPath+","+path.getStartTime();
+                for(String road:path.getRoads()){
+                    finalPath = finalPath+","+road;
+                }
+                out.write("(" + finalPath + ")\r\n"); // \r\n即为换行
+            }
+            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +69,8 @@ public class test {
                     path.add(roadId);
                 }
                 path.setTotalCost(oPath.getTotalCost());
+                path.setCarId(car.getId());
+                path.setStartTime(car.getPlanTime());
                 //assert oPath.getTotalCost()>100:car.toString();
                 formatPaths.add(path);
             }

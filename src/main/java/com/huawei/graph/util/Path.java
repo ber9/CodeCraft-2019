@@ -13,6 +13,8 @@ import java.util.List;
 public class Path implements Cloneable, Comparable<Path> {
     private LinkedList<Edge> edges;
     private LinkedList<String> roads;
+    private String carId;
+    private int startTime;
     private double totalCost;
 
     public Path() {
@@ -55,6 +57,22 @@ public class Path implements Cloneable, Comparable<Path> {
 
     public void setEdges(LinkedList<Edge> edges) {
         this.edges = edges;
+    }
+
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
+    }
+
+    public int getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
     }
 
     public List<String> getNodes() {
