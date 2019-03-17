@@ -1,6 +1,6 @@
-package main.java.com.huawei.util;
+package com.huawei.util;
 
-import main.java.com.huawei.entity.Car;
+import com.huawei.entity.Car;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

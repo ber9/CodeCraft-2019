@@ -1,6 +1,6 @@
-package main.java.com.huawei.graph.util;
+package com.huawei.graph.util;
 
-import main.java.com.huawei.graph.*;
+import com.huawei.graph.*;
 
 import java.util.LinkedList;
 import java.util.List;

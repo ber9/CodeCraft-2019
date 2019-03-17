@@ -1,4 +1,4 @@
-package main.java.com.huawei.graph;
+package com.huawei.graph;
 
 /**
  * The Edge class implements standard properties and methods for a weighted edge in a directed graph.

@@ -1,4 +1,4 @@
-package main.java.com.huawei.graph.util;
+package com.huawei.graph.util;
 
 import java.util.HashMap;
 

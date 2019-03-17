@@ -1,10 +1,10 @@
-package main.java.com.huawei.graph.util;
+package com.huawei.graph.util;
 
 /**
  * Created by brandonsmock on 6/1/15.
  */
 
-import main.java.com.huawei.graph.*;
+import com.huawei.graph.*;
 
 import java.util.HashMap;
 import java.util.HashSet;

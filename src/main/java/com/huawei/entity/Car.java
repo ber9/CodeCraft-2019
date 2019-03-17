@@ -1,4 +1,4 @@
-package main.java.com.huawei.entity;
+package com.huawei.entity;
 
 public class Car {
     private String id;

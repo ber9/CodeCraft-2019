@@ -1,8 +1,8 @@
-package main.java.com.huawei.graph.ksp.test;
+package com.huawei.graph.ksp.test;
 
-import main.java.com.huawei.graph.Graph;
-import main.java.com.huawei.graph.ksp.Eppstein;
-import main.java.com.huawei.graph.util.Path;
+import com.huawei.graph.Graph;
+import com.huawei.graph.ksp.Eppstein;
+import com.huawei.graph.util.Path;
 
 import java.util.List;
 

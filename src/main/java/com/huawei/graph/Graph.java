@@ -1,4 +1,4 @@
-package main.java.com.huawei.graph;
+package com.huawei.graph;
 
 /**
  * The Graph class implements a weighted, directed graph using an adjacency list representation.
@@ -6,8 +6,8 @@ package main.java.com.huawei.graph;
  * Created by brandonsmock on 6/1/15.
  */
 
-import main.java.com.huawei.entity.Car;
-import main.java.com.huawei.entity.Road;
+import com.huawei.entity.Car;
+import com.huawei.entity.Road;
 
 import java.io.*;
 import java.util.*;

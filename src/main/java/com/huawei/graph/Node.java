@@ -1,4 +1,4 @@
-package main.java.com.huawei.graph;
+package com.huawei.graph;
 
 /**
  * The Node class implements a node in a directed graph keyed on a label of type String, with adjacency lists for
@@ -7,8 +7,8 @@ package main.java.com.huawei.graph;
  * Created by brandonsmock on 5/31/15.
  */
 
-import main.java.com.huawei.entity.Car;
-import main.java.com.huawei.entity.Road;
+import com.huawei.entity.Car;
+import com.huawei.entity.Road;
 
 import java.util.HashMap;
 import java.util.Iterator;

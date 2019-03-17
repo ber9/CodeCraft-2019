@@ -1,10 +1,10 @@
-package main.java.com.huawei.graph.ksp.test;
+package com.huawei.graph.ksp.test;
 
-import main.java.com.huawei.entity.Car;
-import main.java.com.huawei.graph.Graph;
-import main.java.com.huawei.graph.ksp.LazyEppstein;
-import main.java.com.huawei.graph.util.Path;
-import main.java.com.huawei.util.ReadUtil;
+import com.huawei.entity.Car;
+import com.huawei.graph.Graph;
+import com.huawei.graph.ksp.LazyEppstein;
+import com.huawei.graph.util.Path;
+import com.huawei.util.ReadUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;

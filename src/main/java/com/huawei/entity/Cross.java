@@ -1,4 +1,4 @@
-package main.java.com.huawei.entity;
+package com.huawei.entity;
 
 /**
  * @author 郭世明

@@ -1,7 +1,7 @@
-package main.java.com.huawei.graph.ksp;
+package com.huawei.graph.ksp;
 
-import main.java.com.huawei.graph.*;
-import main.java.com.huawei.graph.util.*;
+import com.huawei.graph.*;
+import com.huawei.graph.util.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
