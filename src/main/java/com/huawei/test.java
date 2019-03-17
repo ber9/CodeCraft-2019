@@ -12,7 +12,7 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-        String carPath = null,roadPath = null;
+        String carPath = "B:\\GSM\\Documents\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\car.txt",roadPath = "B:\\GSM\\Documents\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
         try {
             kShortestPaths(carPath, roadPath);
         } catch (IOException e) {
@@ -22,8 +22,6 @@ public class test {
 
     public static List<List<Path>> kShortestPaths(String carPath, String roadPath) throws IOException {
         long stTime = System.currentTimeMillis();
-        carPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\car.txt";
-        roadPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
         int K = 100;
         Graph graph = new Graph(roadPath);
         List<Car> cars = new ReadUtil().readCarFile(carPath);

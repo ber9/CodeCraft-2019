@@ -3,7 +3,7 @@ package main.java.com.huawei.entity;
 public class Road {
     private String id;
     private int length;
-    private int Speed;
+    private int speed;
     private int channel;
     private String from;
     private String to;
@@ -12,7 +12,7 @@ public class Road {
     public Road(String id, int length, int speed, int channel, String from, String to, int isDuplex) {
         this.id = id;
         this.length = length;
-        Speed = speed;
+        this.speed = speed;
         this.channel = channel;
         this.from = from;
         this.to = to;
@@ -36,11 +36,11 @@ public class Road {
     }
 
     public int getSpeed() {
-        return Speed;
+        return speed;
     }
 
     public void setSpeed(int speed) {
-        Speed = speed;
+        this.speed = speed;
     }
 
     public int getChannel() {

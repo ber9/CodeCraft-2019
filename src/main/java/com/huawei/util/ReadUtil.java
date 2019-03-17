@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadUtil {
+    /**
+     * 
+     * @param carFilename
+     * @return
+     * @throws IOException
+     */
     public List<Car> readCarFile(String carFilename) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(carFilename));
         String line = in.readLine();
