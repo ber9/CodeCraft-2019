@@ -1,11 +1,13 @@
-package main.java.com.huawei;
+package com.huawei;
 
-import main.java.com.huawei.entity.Car;
-import main.java.com.huawei.graph.Edge;
-import main.java.com.huawei.graph.Graph;
-import main.java.com.huawei.graph.ksp.LazyEppstein;
-import main.java.com.huawei.graph.util.Path;
-import main.java.com.huawei.util.ReadUtil;
+import com.huawei.entity.Car;
+import com.huawei.entity.CarOnRoad;
+import com.huawei.entity.CarStatus;
+import com.huawei.graph.Edge;
+import com.huawei.graph.Graph;
+import com.huawei.graph.ksp.LazyEppstein;
+import com.huawei.graph.util.Path;
+import com.huawei.util.ReadUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class test {
         String carPath = "B:\\GSM\\Documents\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\car.txt",roadPath = "B:\\GSM\\Documents\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
         try {
             kShortestPaths(carPath, roadPath);
+            CarStatus m = CarStatus.ARRIVED;
+            System.out.println(CarStatus.ARRIVED.equals(m));
         } catch (IOException e) {
             e.printStackTrace();
         }
