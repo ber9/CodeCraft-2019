@@ -3,36 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab040908-e0d3-462a-80af-707ec4bf5c24" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/car.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeCraft-2019/com/huawei/car.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/cross.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeCraft-2019/com/huawei/cross.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/entity/Car.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/entity/Road.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/Edge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/Graph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/WeightedEdge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/Eppstein.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/EppsteinArrayHeap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/EppsteinHeap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/EppsteinPath.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/ImplicitPath.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/KSPAlgorithm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/LazyEppstein.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/SimpleEppstein.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/test/TestEppstein.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/ksp/test/TestLazyEppstein.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/util/Dijkstra.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/util/DijkstraNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/util/Path.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/graph/util/ShortestPathTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/road.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeCraft-2019/com/huawei/road.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/java/com/huawei/util/ReadUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CodeCraft-2019/main/resources/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/huawei/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/huawei/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/huawei/graph/util/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/huawei/graph/util/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/huawei/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/huawei/test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -44,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="180">
+              <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,7 +26,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -73,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/graph/util/Path.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="198">
+              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -82,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+            <state relative-caret-position="108">
+              <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,8 +75,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/huawei/graph/util/Path.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/huawei/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/huawei/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/huawei/test.java" />
       </list>
     </option>
   </component>
@@ -210,7 +180,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552812060912" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552813726649" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
@@ -226,7 +196,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.test (1)">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -235,6 +205,20 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.huawei.test" />
+      <module name="CodeCraft-2019" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.huawei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -280,6 +264,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test (1)" />
         <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
@@ -296,12 +281,12 @@
       <updated>1552805039455</updated>
       <workItem from="1552805043458" duration="683000" />
       <workItem from="1552806208747" duration="103000" />
-      <workItem from="1552806331523" duration="5762000" />
+      <workItem from="1552806331523" duration="6920000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6548000" />
+    <option name="totallyTimeSpent" value="7706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="-7" width="1501" height="886" extended-state="6" />
@@ -347,8 +332,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/huawei/test.java</url>
-          <line>77</line>
+          <line>82</line>
           <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/huawei/test.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -440,35 +431,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/graph/util/Path.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+        <state relative-caret-position="198">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/huawei/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
