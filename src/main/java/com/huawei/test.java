@@ -1,6 +1,7 @@
 package main.java.com.huawei;
 
 import main.java.com.huawei.entity.Car;
+import main.java.com.huawei.graph.Edge;
 import main.java.com.huawei.graph.Graph;
 import main.java.com.huawei.graph.ksp.LazyEppstein;
 import main.java.com.huawei.graph.util.Path;
@@ -8,6 +9,8 @@ import main.java.com.huawei.util.ReadUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class test {
@@ -28,12 +31,25 @@ public class test {
         Graph graph = new Graph(roadPath);
         List<Car> cars = new ReadUtil().readCarFile(carPath);
         List<List<Path>> carPaths = new ArrayList<>();
+        HashMap<String,String> roadsId = graph.getRoadsId();
         for(Car car:cars){
             graph.updateWeight(car);
-            carPaths.add(kShortestPath(graph, car, K));
+            List<Path> paths = kShortestPath(graph, car, K);
+            List<Path> formatPaths = new LinkedList<>();
+            String roadId = null;
+            for(int i = 0; i<paths.size(); i++){
+                Path path = new Path();
+                Path oPath = paths.get(i);
+                for(Edge edge:oPath.getEdges()){
+                    roadId = roadsId.get(edge.getFromNode()+"_"+edge.getToNode());
+                    path.add(roadId);
+                }
+                path.setTotalCost(oPath.getTotalCost());
+                //assert oPath.getTotalCost()>100:car.toString();
+                formatPaths.add(path);
+            }
+            carPaths.add(formatPaths);
         }
-
-
         long endTime = System.currentTimeMillis();
         System.out.println("kPaths时间:'"+(endTime - stTime)+"'");
         return carPaths;

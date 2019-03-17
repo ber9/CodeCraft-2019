@@ -54,4 +54,15 @@ public class Car {
     public void setPlanTime(int planTime) {
         this.planTime = planTime;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id='" + id + '\'' +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", speed=" + speed +
+                ", planTime=" + planTime +
+                '}';
+    }
 }
