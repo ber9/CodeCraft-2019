@@ -19,7 +19,12 @@ public class test {
                 roadPath = "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\road.txt";
         try {
             List<List<Path>> paths = kShortestPaths(carPath, roadPath);
-
+            List<Path> answer = new ArrayList<>();
+            for(List<Path> pathList:paths){
+                Path path = pathList.get(0);
+                answer.add(path);
+            }
+            writeAnswer(answer, "C:\\project\\ideaProject\\CodeCraft-2019\\src\\main\\java\\com\\huawei\\answer.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
