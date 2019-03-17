@@ -1,6 +1,8 @@
 package com.huawei;
 
 import com.huawei.entity.Car;
+import com.huawei.entity.CarOnRoad;
+import com.huawei.entity.CarStatus;
 import com.huawei.graph.Edge;
 import com.huawei.graph.Graph;
 import com.huawei.graph.ksp.LazyEppstein;
@@ -53,7 +55,7 @@ public class test {
 
     public static List<List<Path>> kShortestPaths(String carPath, String roadPath) throws IOException {
         long stTime = System.currentTimeMillis();
-        int K = 100;
+        int K = 10;
         Graph graph = new Graph(roadPath);
         List<Car> cars = new ReadUtil().readCarFile(carPath);
         List<List<Path>> carPaths = new ArrayList<>();

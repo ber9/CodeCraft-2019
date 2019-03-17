@@ -213,6 +213,7 @@ public class Graph {
                         Integer.parseInt(edgeDescription[2].trim()), Integer.parseInt(edgeDescription[3].trim()),
                         edgeDescription[4].trim(),edgeDescription[5].trim(),Integer.parseInt(edgeDescription[6].trim()));
                 roadsId.put(road.getFrom()+"_"+road.getTo(),road.getId());
+                roadsId.put(road.getTo()+"_"+road.getFrom(),road.getId());
                 if (edgeDescription.length == 7) {
                     addEdge(edgeDescription[4].trim(),edgeDescription[5].trim(), null,road);
                     //addEdge(edgeDescription[1],edgeDescription[0],Double.parseDouble(edgeDescription[2]));
