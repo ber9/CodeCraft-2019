@@ -79,7 +79,7 @@ public class Main {
 
     public static List<List<Path>> kShortestPaths(String carPath, String roadPath) throws IOException {
         long stTime = System.currentTimeMillis();
-        int K = 100;
+        int K = 10;
         Graph graph = new Graph(roadPath);
         List<Car> cars = new ReadUtil().readCarFile(carPath);
         List<List<Path>> carPaths = new ArrayList<>();
@@ -98,7 +98,7 @@ public class Main {
                 }
                 path.setTotalCost(oPath.getTotalCost());
                 path.setCarId(car.getId());
-                path.setStartTime(car.getPlanTime());
+                path.setStartTime((int) (car.getPlanTime()+Math.random()*890));
                 //assert oPath.getTotalCost()>100:car.toString();
                 formatPaths.add(path);
             }
