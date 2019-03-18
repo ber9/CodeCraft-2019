@@ -99,7 +99,7 @@ public class Main {
                 }
                 path.setTotalCost(oPath.getTotalCost());
                 path.setCarId(car.getId());
-                path.setStartTime((int) (car.getPlanTime()+Math.random()*890));
+                path.setStartTime((int) (car.getPlanTime()+Math.random()*800));
                 //assert oPath.getTotalCost()>100:car.toString();
                 formatPaths.add(path);
             }
