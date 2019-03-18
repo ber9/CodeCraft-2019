@@ -39,6 +39,15 @@ public class Path implements Cloneable, Comparable<Path> {
         }
     }
 
+    public Path(LinkedList<Edge> edges,LinkedList<String> roads) {
+        this.edges = edges;
+        this.roads = roads;
+        totalCost = 0;
+        for (Edge edge : edges) {
+            totalCost += edge.getWeight();
+        }
+    }
+
     public Path(LinkedList<Edge> edges, double totalCost) {
         this.edges = edges;
         this.totalCost = totalCost;
@@ -211,12 +220,14 @@ public class Path implements Cloneable, Comparable<Path> {
 
     public Path clone() {
         LinkedList<Edge> edges = new LinkedList<Edge>();
-
+        LinkedList<String> roads = new LinkedList<>();
         for (Edge edge : this.edges) {
             edges.add(edge.clone());
         }
-
-        return new Path(edges);
+        for(String road:this.roads){
+            roads.add(road);
+        }
+        return new Path(edges, roads);
     }
 
     public Path shallowClone() {
