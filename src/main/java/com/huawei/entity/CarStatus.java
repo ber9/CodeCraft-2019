@@ -6,7 +6,7 @@ package com.huawei.entity;
  */
 public enum CarStatus {
     // 等待状态
-    WAITING,
+    WAIT,
     // 终止状态
     STOP,
     // 尚未出发
