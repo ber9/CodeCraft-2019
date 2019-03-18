@@ -245,7 +245,6 @@ public class Path implements Cloneable, Comparable<Path> {
     }
 
     public void addPath(Path p2) {
-        // ADD CHECK TO SEE THAT PATH P2'S FIRST NODE IS SAME AS THIS PATH'S LAST NODE
 
         this.edges.addAll(p2.getEdges());
         this.totalCost += p2.getTotalCost();

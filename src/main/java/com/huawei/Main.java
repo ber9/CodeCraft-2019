@@ -69,7 +69,8 @@ public class Main {
                 for(String road:path.getRoads()){
                     finalPath = finalPath+","+road;
                 }
-                out.write("(" + finalPath + ")\r\n"); // \r\n即为换行
+                // \r\n即为换行
+                out.write("(" + finalPath + ")\r\n");
             }
             out.flush();
         } catch (IOException e) {
