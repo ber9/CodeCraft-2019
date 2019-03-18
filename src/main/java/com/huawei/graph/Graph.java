@@ -8,6 +8,7 @@ package com.huawei.graph;
 
 import com.huawei.entity.Car;
 import com.huawei.entity.Road;
+import com.huawei.graph.util.Path;
 
 import java.io.*;
 import java.util.*;
@@ -108,6 +109,12 @@ public class Graph {
     public void updateWeight(Car car){
         for (Node node : nodes.values()) {
             node.updateWeight(car);
+        }
+    }
+
+    public void updateWeight(Car car, List<List<Path>> paths, int numOfCars){
+        for (Node node : nodes.values()) {
+            node.updateWeight(car,paths,numOfCars);
         }
     }
 

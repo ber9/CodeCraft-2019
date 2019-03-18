@@ -9,11 +9,9 @@ package com.huawei.graph;
 
 import com.huawei.entity.Car;
 import com.huawei.entity.Road;
+import com.huawei.graph.util.Path;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 public class Node {
     protected String label;
@@ -90,9 +88,34 @@ public class Node {
         }
     }
 
-    public void updateWeigth(Car car,) {
+    public void updateWeight(Car car, List<List<Path>> carPaths, int numOfCars){
+        int i = 1;
+        for (String roadId : getAdjacencyList()){
+            Road road = roads.get(roadId);
+            if (carPaths.size() > numOfCars){
+                // 每次只考虑前numOfCars的车对路径权重的影响
+                for (List<Path> carPath : carPaths){
+                    // 获取 k = 1 的路径
+                    Path path = carPath.get(0);
+                    if (i >= numOfCars){
+                        break;
+                    }
+                    if (path.getRoads().contains(roadId)){
+                        int v = Math.min(car.getSpeed(), road.getSpeed());
+                        double weight = road.getLength() / v / 1.0 + i;
+                        neighbors.put(roadId,weight);
+                    }
+                    i++;
+                }
+            }else {
+                int v = Math.min(car.getSpeed(), road.getSpeed());
+                double weight = road.getLength() / v / 1.0;
+                neighbors.put(roadId, weight);
+            }
 
+        }
     }
+
 
     public LinkedList<Edge> getEdges() {
         LinkedList<Edge> edges = new LinkedList<Edge>();

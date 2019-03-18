@@ -16,7 +16,7 @@ import java.util.*;
 
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class);
-
+    private static final int NUM_OF_CARS = 20;
     public static void main(String[] args) {
         if (args.length != 4) {
             logger.error("please input args: inputFilePath, resultFilePath");
@@ -59,7 +59,7 @@ public class Main {
             answer.createNewFile();
             FileWriter writer = new FileWriter(answer);
             BufferedWriter out = new BufferedWriter(writer);
-            startCarsAtOneTime(paths,20);
+            startCarsAtOneTime(paths,NUM_OF_CARS);
             for (Path path : paths) {
                 String carId = path.getCarId();
                 String finalPath = carId;
@@ -83,8 +83,15 @@ public class Main {
         List<Car> cars = new ReadUtil().readCarFile(carPath);
         List<List<Path>> carPaths = new ArrayList<>();
         HashMap<String, String> roadsId = graph.getRoadsId();
+        Collections.sort(cars, new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getPlanTime() - o2.getPlanTime();
+            }
+        });
         for (Car car : cars) {
-            graph.updateWeight(car);
+//            graph.updateWeight(car);
+            graph.updateWeight(car,carPaths,NUM_OF_CARS);
             List<Path> paths = kShortestPath(graph, car, K);
             List<Path> formatPaths = new LinkedList<>();
             String roadId = null;
