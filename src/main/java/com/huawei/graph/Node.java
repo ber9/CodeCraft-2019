@@ -3,7 +3,7 @@ package com.huawei.graph;
 /**
  * The Node class implements a node in a directed graph keyed on a label of type String, with adjacency lists for
  * representing edges.
- *
+ * <p>
  * Created by brandonsmock on 5/31/15.
  */
 
@@ -17,8 +17,8 @@ import java.util.Set;
 
 public class Node {
     protected String label;
-    protected HashMap<String,Double> neighbors; // adjacency list, with HashMap for each edge weight
-    protected HashMap<String,Road> roads; //相关道路的id
+    protected HashMap<String, Double> neighbors; // adjacency list, with HashMap for each edge weight
+    protected HashMap<String, Road> roads; //相关道路的id
 
     public Node() {
         neighbors = new HashMap();
@@ -55,7 +55,7 @@ public class Node {
         this.roads = roads;
     }
 
-    public void addEdge(String toNodeLabel,Double weight) {
+    public void addEdge(String toNodeLabel, Double weight) {
         neighbors.put(toNodeLabel, weight);
     }
 
@@ -79,26 +79,30 @@ public class Node {
         return neighbors.keySet();
     }
 
-    public void updateWeight(Car car){
+    public void updateWeight(Car car) {
         Iterator it = getAdjacencyList().iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             String to = (String) it.next();
             Road road = roads.get(to);
             int v = Math.min(car.getSpeed(), road.getSpeed());
-            double weight = road.getLength()/v/1.0;
-            neighbors.put(to,weight);
+            double weight = road.getLength() / v / 1.0;
+            neighbors.put(to, weight);
         }
+    }
+
+    public void updateWeigth(Car car,) {
+
     }
 
     public LinkedList<Edge> getEdges() {
         LinkedList<Edge> edges = new LinkedList<Edge>();
         for (String toNodeLabel : neighbors.keySet()) {
-            edges.add(new Edge(label,toNodeLabel,neighbors.get(toNodeLabel)));
+            edges.add(new Edge(label, toNodeLabel, neighbors.get(toNodeLabel)));
         }
 
         return edges;
     }
-    
+
     public String toString() {
         StringBuilder nodeStringB = new StringBuilder();
         nodeStringB.append(label);
