@@ -98,6 +98,7 @@ public class Main {
                 path.setTotalCost(oPath.getTotalCost());
                 path.setCarId(car.getId());
                 path.setStartTime(car.getPlanTime());
+                path.setStartTime(car.getPlanTime());
                 formatPaths.add(path);
             }
             carPaths.add(formatPaths);
