@@ -19,9 +19,11 @@ public class ScheduleSim {
 
     private static final Map<String, Road> ROAD_MAP = new HashMap<>(100);
 
-    private static final Map<String, Road> CAR_MAP = new HashMap<>(10000);
+    private static final Map<String, Car> CAR_MAP = new HashMap<>(10000);
 
     private static final Map<String, Cross> CROSS_MAP = new HashMap<>(60);
+
+    private static final Map<String, RoadCondition> ROAD_CONDITION_MAP = new HashMap<>(100);
 
 
     /**
@@ -43,10 +45,19 @@ public class ScheduleSim {
             if (!CarStatus.WAIT.equals(carOnRoad.getCarStatus())) {
                 continue;
             }
-            // 判断是否冲突
-
-            // 不冲突就移动
             // 到达终点判断，queue size
+            if(carOnRoad.getPath().size()==0){
+                carOnRoad.setCarStatus(CarStatus.ARRIVED);
+                channel.getCars().remove(carOnRoad);
+                continue;
+            }
+            // 判断是否冲突
+            if(isConflict(carOnRoad, crossId)) {
+                break;
+            }
+            // 不冲突就移动
+            //观察下个路的车位情况
+            String nextRoad = carOnRoad.getPath().peek();
 
             // 重新标记该车道上的状态
 
@@ -66,29 +77,30 @@ public class ScheduleSim {
             return false;
         if(turnInfo.getTurnDirection().equals(TurnDirection.LFFT)){
             String road = turnInfo.getRoads().get(0);
-            RoadCondition roadCondition = ;
-            List<Channel> channels = getChannelsFromRoadOnOneDirection(roadCondition,cross.getId());
-            CarOnRoad conflictCar = getFirstPriorityCar(channels);
-            if (turnDirection(cross,conflictCar).getTurnDirection().equals(TurnDirection.STRAIGHT))
-                return true;
-            else
-                return false;
+            CarOnRoad conflictCar = getConflictCar(road, cross.getId());
+            return turnDirection(cross, conflictCar).getTurnDirection().equals(TurnDirection.STRAIGHT);
         }
         if(turnInfo.getTurnDirection().equals(TurnDirection.RIGHT)){
             String sRoad = turnInfo.getRoads().get(0);
-            RoadCondition roadCondition = ;
-            List<Channel> channels = getChannelsFromRoadOnOneDirection(roadCondition,cross.getId());
-            CarOnRoad sConflictCar = getFirstPriorityCar(channels);
+            CarOnRoad sConflictCar = getConflictCar(sRoad, cross.getId());
             String lRoad = turnInfo.getRoads().get(1);
-            roadCondition = ;
-            channels = getChannelsFromRoadOnOneDirection(roadCondition,cross.getId());
-            CarOnRoad lConflictCar = getFirstPriorityCar(channels);
-            if (turnDirection(cross,sConflictCar).getTurnDirection().equals(TurnDirection.STRAIGHT)
-                    ||turnDirection(cross,lConflictCar).getTurnDirection().equals(TurnDirection.LFFT))
-                return true;
-            else
-                return false;
+            CarOnRoad lConflictCar = getConflictCar(lRoad, cross.getId());
+            return turnDirection(cross, sConflictCar).getTurnDirection().equals(TurnDirection.STRAIGHT)
+                    || turnDirection(cross, lConflictCar).getTurnDirection().equals(TurnDirection.LFFT);
         }
+        return false;
+    }
+
+    /**
+     * 得到某一道路第一优先级车
+     * @param roadId
+     * @param crossId
+     * @return
+     */
+    private CarOnRoad getConflictCar(String roadId, String crossId){
+        RoadCondition roadCondition = ROAD_CONDITION_MAP.get(roadId);
+        List<Channel> channels = getChannelsFromRoadOnOneDirection(roadCondition,crossId);
+        return getFirstPriorityCar(channels);
     }
 
     /**
