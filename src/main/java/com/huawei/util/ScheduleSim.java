@@ -21,9 +21,15 @@ public class ScheduleSim {
 
     private static final Map<String, Road> CAR_MAP = new HashMap<>(10000);
 
-    private static final Map<String, Road> CROSS_MAP = new HashMap<>(60);
+    private static final Map<String, Cross> CROSS_MAP = new HashMap<>(60);
 
 
+    /**
+     * 调度某一道路车辆
+     *
+     * @param roadCondition
+     * @param crossId
+     */
     public void scheduleOneRoadCars(RoadCondition roadCondition, String crossId) {
         List<Channel> channels = getChannelsFromRoadOnOneDirection(roadCondition, crossId);
 
@@ -40,41 +46,135 @@ public class ScheduleSim {
             // 判断是否冲突
 
             // 不冲突就移动
+            // 到达终点判断，queue size
 
             // 重新标记该车道上的状态
 
         }
     }
 
-    private boolean isConflict(){
-        return true;
+    private boolean isConflict(CarOnRoad car, String crossId) {
+        if(car.getPath().size()==0)//到终点
+            return false;
+        Cross cross = CROSS_MAP.get(crossId);
+        TurnInfo turnInfo = turnDirection(cross, car);//转向冲突车道信息
+        return checkConflict(turnInfo,cross);
+    }
+
+    private boolean checkConflict(TurnInfo turnInfo, Cross cross){
+        if(turnInfo.getTurnDirection().equals(TurnDirection.STRAIGHT))
+            return false;
+        if(turnInfo.getTurnDirection().equals(TurnDirection.LFFT)){
+            String road = turnInfo.getRoads().get(0);
+            RoadCondition roadCondition = ;
+            List<Channel> channels = getChannelsFromRoadOnOneDirection(roadCondition,cross.getId());
+            CarOnRoad conflictCar = getFirstPriorityCar(channels);
+            if (turnDirection(cross,conflictCar).getTurnDirection().equals(TurnDirection.STRAIGHT))
+                return true;
+            else
+                return false;
+        }
+        if(turnInfo.getTurnDirection().equals(TurnDirection.RIGHT)){
+            String sRoad = turnInfo.getRoads().get(0);
+            RoadCondition roadCondition = ;
+            List<Channel> channels = getChannelsFromRoadOnOneDirection(roadCondition,cross.getId());
+            CarOnRoad sConflictCar = getFirstPriorityCar(channels);
+            String lRoad = turnInfo.getRoads().get(1);
+            roadCondition = ;
+            channels = getChannelsFromRoadOnOneDirection(roadCondition,cross.getId());
+            CarOnRoad lConflictCar = getFirstPriorityCar(channels);
+            if (turnDirection(cross,sConflictCar).getTurnDirection().equals(TurnDirection.STRAIGHT)
+                    ||turnDirection(cross,lConflictCar).getTurnDirection().equals(TurnDirection.LFFT))
+                return true;
+            else
+                return false;
+        }
     }
 
     /**
+     * 转向信息
+     * @param cross
+     * @return 方向以及冲突车道
+     */
+    private TurnInfo turnDirection(Cross cross, CarOnRoad car) {
+        String nowRoad = car.getRoadId();
+        if(car.getPath().size()==0)//到达终点直接设置右转，不耽误其他车辆判断
+            return new TurnInfo(TurnDirection.RIGHT);
+        String nextRoad = car.getPath().peek();
+        TurnInfo turnInfo = new TurnInfo();
+        int now = 0, next = 0;
+        if (cross.getRoadId1() != null) {
+            if (cross.getRoadId1().equals(nowRoad))
+                now = 0;
+            else if (cross.getRoadId1().equals(nextRoad))
+                next = 0;
+        }
+        if (cross.getRoadId2() != null) {
+            if (cross.getRoadId2().equals(nowRoad))
+                now = 1;
+            if (cross.getRoadId2().equals(nextRoad))
+                next = 1;
+        }
+        if (cross.getRoadId3() != null) {
+            if (cross.getRoadId3().equals(nowRoad))
+                now = 2;
+            if (cross.getRoadId3().equals(nextRoad))
+                next = 2;
+        }
+        if (cross.getRoadId4() != null) {
+            if (cross.getRoadId4().equals(nowRoad))
+                now = 3;
+            if (cross.getRoadId4().equals(nextRoad))
+                next = 3;
+        }
+        if ((now + 2) % 4 == next) {
+            turnInfo.setTurnDirection(TurnDirection.STRAIGHT);
+            return turnInfo;
+        }
+        List<String> roads = new ArrayList<>();
+        if ((now + 1) % 4 == next) {
+            turnInfo.setTurnDirection(TurnDirection.LFFT);
+            roads.add(cross.getRoad((now + 3) % 4));//直行冲突
+            turnInfo.setRoads(roads);
+            return turnInfo;
+        }
+        if ((now + 3) % 4 == next) {
+            turnInfo.setTurnDirection(TurnDirection.RIGHT);
+            roads.add(cross.getRoad((now + 1) % 4));//直行冲突
+            roads.add(cross.getRoad((now + 2) % 4));
+            turnInfo.setRoads(roads);
+            return turnInfo;
+        }
+        return null;
+    }
+
+
+    /**
      * 获取某道路某方向的第一优先级车辆
+     *
      * @param channels
      * @return
      */
     private CarOnRoad getFirstPriorityCar(List<Channel> channels) {
         List<CarOnRoad> carOnRoads;
         CarOnRoad carOnRoad = null;
-        for (Channel channel : channels){
+        for (Channel channel : channels) {
             carOnRoads = channel.getCars();
-            if (carOnRoads != null){
-                for (CarOnRoad item : carOnRoads){
-                    if (!CarStatus.WAIT.equals(item.getCarStatus())){
+            if (carOnRoads != null) {
+                for (CarOnRoad item : carOnRoads) {
+                    if (!CarStatus.WAIT.equals(item.getCarStatus())) {
                         break;
-                    }else {
+                    } else {
                         carOnRoad = item;
                     }
                 }
             }
         }
-        for (Channel channel : channels){
+        for (Channel channel : channels) {
             carOnRoads = channel.getCars();
-            if (carOnRoads != null){
-                for (CarOnRoad item : carOnRoads){
-                    if (CarStatus.WAIT.equals(item.getCarStatus()) && carOnRoad.getPosition() < item.getPosition()){
+            if (carOnRoads != null) {
+                for (CarOnRoad item : carOnRoads) {
+                    if (CarStatus.WAIT.equals(item.getCarStatus()) && carOnRoad.getPosition() < item.getPosition()) {
                         carOnRoad = item;
                     }
                 }
@@ -127,6 +227,7 @@ public class ScheduleSim {
 
     /**
      * 标记车辆
+     *
      * @param roadConditions
      */
     public void markCars(List<RoadCondition> roadConditions) {
@@ -154,7 +255,7 @@ public class ScheduleSim {
      */
     private void driveAllCarJustOnRoadToEndStateOnSingleChannel(Channel channel) {
         List<CarOnRoad> carOnRoads = channel.getCars();
-        if (carOnRoads != null){
+        if (carOnRoads != null) {
             int size = carOnRoads.size();
             CarOnRoad currentCarOnRoad;
             for (int i = 0; i < size; i++) {

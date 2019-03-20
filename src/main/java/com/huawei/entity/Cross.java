@@ -1,5 +1,8 @@
 package com.huawei.entity;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * @author 郭世明
  * @date 2019/3/16 18:16
@@ -18,6 +21,16 @@ public class Cross {
         this.roadId2 = roadId2;
         this.roadId3 = roadId3;
         this.roadId4 = roadId4;
+    }
+
+    public String getRoad(int i){
+        if(i==0)
+            return roadId1;
+        if(i==1)
+            return roadId2;
+        if(i==2)
+            return roadId3;
+        return roadId4;
     }
 
     public String getId() {
