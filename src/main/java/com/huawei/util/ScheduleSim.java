@@ -56,13 +56,47 @@ public class ScheduleSim {
                 break;
             }
             // 不冲突就移动
-            //观察下个路的车位情况
-            String nextRoad = carOnRoad.getPath().peek();
+            moveToNextRoad(roadCondition,channel,carOnRoad,crossId);
 
+            carOnRoad.setCarStatus(CarStatus.STOP);
             // 重新标记该车道上的状态
 
         }
     }
+
+    private void moveToNextRoad(RoadCondition roadCondition, Channel channel, CarOnRoad carOnRoad,String crossId){
+        //观察目的道路路的车位情况
+        String nextRoad = carOnRoad.getPath().peek();
+        RoadCondition road2Condition = ROAD_CONDITION_MAP.get(nextRoad);
+        List<Channel> nextChannels = getChannelsFromRoadOnOneDirection(nextRoad, crossId);
+        int s1 = roadCondition.getRoad().getLength()-carOnRoad.getPosition();
+        int v2 = Math.min(road2Condition.getRoad().getSpeed(),carOnRoad.getCar().getSpeed());
+        if(s1>=v2) {//不能通过路口
+            carOnRoad.setPosition(roadCondition.getRoad().getLength());
+            carOnRoad.setCarStatus(CarStatus.STOP);
+        }else {
+            for (Channel ch : nextChannels) {
+
+                if (ch.getCars().size() == 0) {
+                    carOnRoad.setCarStatus(CarStatus.STOP);
+                    channel.getCars().remove(carOnRoad);
+                    carOnRoad.setRoadId(nextRoad);
+                    carOnRoad.getPath().poll();
+
+                    carOnRoad.setPosition();
+                    break;
+                }
+                if (ch.getCars().size() > 0)
+                    cor = ch.getCars().get(ch.getCars().size() - 1);
+                if (cor == null)
+                    continue;
+
+            }
+        }
+        //标记并调度后来同一车道车辆
+    }
+
+
 
     private boolean isConflict(CarOnRoad car, String crossId) {
         if(car.getPath().size()==0)//到终点
@@ -72,6 +106,12 @@ public class ScheduleSim {
         return checkConflict(turnInfo,cross);
     }
 
+    /**
+     * 检查有各个方向没有冲突
+     * @param turnInfo
+     * @param cross
+     * @return
+     */
     private boolean checkConflict(TurnInfo turnInfo, Cross cross){
         if(turnInfo.getTurnDirection().equals(TurnDirection.STRAIGHT))
             return false;
@@ -92,7 +132,7 @@ public class ScheduleSim {
     }
 
     /**
-     * 得到某一道路第一优先级车
+     * 得到某一道路某方向第一优先级车
      * @param roadId
      * @param crossId
      * @return
@@ -236,6 +276,23 @@ public class ScheduleSim {
         return res;
     }
 
+    /**
+     * 通过目的道路id以及路口id得到目的道路车道
+     * @param roadId
+     * @param crossId
+     * @return
+     */
+    private List<Channel> getChannelsFromRoadOnOneDirection(String roadId, String crossId) {
+        RoadCondition roadCondition = ROAD_CONDITION_MAP.get(roadId);
+        List<Channel> res = new ArrayList<>();
+        for (Channel channel : roadCondition.getChannels()) {
+            if (!channel.getToId().equals(crossId)) {
+                res.add(channel);
+            }
+        }
+        return res;
+    }
+
 
     /**
      * 标记车辆
@@ -299,4 +356,7 @@ public class ScheduleSim {
             }
         }
     }
+
+    //标记剩下的车辆
+    private void signElseCarStateOnOneChannel(Channel channel,Boolean is)
 }

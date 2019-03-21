@@ -13,10 +13,7 @@ public class CarOnRoad {
     private CarStatus carStatus;
     private int position;
     private int startTime;
-    /**
-     * 车辆的规划路径
-     */
-    private Queue<String> path;
+    private Queue<String> path;//车辆的规划路径
 
     public CarOnRoad(String roadId, Car car, CarStatus carStatus, int position, int startTime, Queue<String> path) {
         this.roadId = roadId;
