@@ -2,7 +2,6 @@ package com.huawei.util;
 
 import com.huawei.entity.*;
 import com.huawei.graph.util.Path;
-import com.huawei.util.ReadUtil;
 
 import java.io.IOException;
 import java.util.*;
@@ -41,8 +40,8 @@ public class ScheduleSim {
         readUtil.initCarOnRoad(CAR_ON_ROAD_MAP, CAR_MAP, paths);
         return startSchedule();
     }
-
-    //cross车道id判断空位-1!!!!!!
+    
+    //cross车道id判断空位
 
     public int startSchedule() {
         TIMER = 0;
