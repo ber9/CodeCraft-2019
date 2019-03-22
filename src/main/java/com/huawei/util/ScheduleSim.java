@@ -103,7 +103,7 @@ public class ScheduleSim {
 
 
     /**
-     * 调度某一道路某个方向车辆
+     * 调度某一道路车辆
      *
      * @param roadCondition
      * @param crossId
@@ -133,7 +133,8 @@ public class ScheduleSim {
                 // 判断是否冲突
                 if (isConflict(carOnRoad, crossId))
                     break;
-                // 不冲突就移动，重新标记该车道上的状态
+                // 不冲突就移动
+                // 重新标记该车道上的状态
                 moveToNextRoad(roadCondition, channel, carOnRoad, crossId);
             }
         }
@@ -162,7 +163,7 @@ public class ScheduleSim {
                 String nextRoad = carOnRoad.getPath().peek();
                 RoadCondition road2Condition = ROAD_CONDITION_MAP.get(nextRoad);
                 int v = Math.min(car.getSpeed(), road2Condition.getRoad().getSpeed());
-                List<Channel> nextChannels = getChannelsFromRoadOnOneDirection(nextRoad, car.getFrom());
+                List<Channel> nextChannels = getChannelsFromRoadOnOneDirection(road2Condition, car.getFrom());
                 for (Channel ch : nextChannels) {
                     if (ch.getCars().size() == 0) {//目的车道没车
                         carOnRoad.setCarStatus(CarStatus.STOP);
@@ -200,7 +201,7 @@ public class ScheduleSim {
         //观察目的道路路的车位情况
         String nextRoad = carOnRoad.getPath().peek();
         RoadCondition road2Condition = ROAD_CONDITION_MAP.get(nextRoad);
-        List<Channel> nextChannels = getChannelsFromRoadOnOneDirection(nextRoad, crossId);
+        List<Channel> nextChannels = getChannelsFromRoadOnOneDirection(road2Condition, crossId);
         int s1 = roadCondition.getRoad().getLength() - carOnRoad.getPosition();
         int v2 = Math.min(road2Condition.getRoad().getSpeed(), carOnRoad.getCar().getSpeed());
         if (s1 >= v2) {//还不能通过路口
