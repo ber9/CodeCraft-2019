@@ -4,9 +4,7 @@ public class Road {
     private String id;
     private int length;
     private int speed;
-    /**
-     * 车道数目
-     */
+    //车道数目
     private int channel;
     private String from;
     private String to;
@@ -76,5 +74,13 @@ public class Road {
 
     public void setDuplex(Integer duplex) {
         isDuplex = duplex;
+    }
+
+    public int getIsDuplex() {
+        return isDuplex;
+    }
+
+    public void setIsDuplex(int isDuplex) {
+        this.isDuplex = isDuplex;
     }
 }

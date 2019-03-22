@@ -32,5 +32,6 @@ public class TurnInfo {
         this.roads = roads;
     }
 
-
+    public TurnInfo() {
+    }
 }
