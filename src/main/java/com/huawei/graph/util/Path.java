@@ -14,6 +14,7 @@ public class Path implements Cloneable, Comparable<Path> {
     private LinkedList<Edge> edges;
     private LinkedList<String> roads;
     private String carId;
+    private int speed;
     private int startTime;
     private double totalCost;
     private int fitness;
@@ -114,6 +115,14 @@ public class Path implements Cloneable, Comparable<Path> {
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public void addFirstNode(String nodeLabel) {

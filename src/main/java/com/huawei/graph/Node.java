@@ -19,14 +19,14 @@ public class Node {
     protected HashMap<String, Road> roads; //相关道路的id
 
     public Node() {
-        neighbors = new HashMap();
-        roads = new HashMap<>();
+        neighbors = new HashMap<>();
+        roads = new HashMap<String, Road>();
     }
 
     public Node(String label) {
         this.label = label;
-        neighbors = new HashMap();
-        roads = new HashMap<>();
+        neighbors = new HashMap<>();
+        roads = new HashMap<String, Road>();
     }
 
     public String getLabel() {
@@ -88,29 +88,30 @@ public class Node {
         }
     }
 
-    public void updateWeight(Car car, List<List<Path>> carPaths, int numOfCars){
+    public void updateWeight(Car car, List<List<Path>> carPaths, int numOfCars) {
         int i = 1;
-        for (String roadId : getAdjacencyList()){
-            Road road = roads.get(roadId);
-            if (carPaths.size() > numOfCars){
+        for (String roadToId : getAdjacencyList()) {
+            Road road = roads.get(roadToId);
+            int v = Math.min(car.getSpeed(), road.getSpeed());
+            double weight = road.getLength() / v / 1.0;
+            if (carPaths.size() > numOfCars) {
                 // 每次只考虑前numOfCars的车对路径权重的影响
-                for (List<Path> carPath : carPaths){
-                    // 获取 k = 1 的路径
-                    Path path = carPath.get(0);
-                    if (i >= numOfCars){
+                int len = carPaths.size();
+                for (int j = len - 1; j > 0; j--) {
+                    Path path = carPaths.get(j).get(0);
+                    if (i >= numOfCars) {
                         break;
                     }
-                    if (path.getRoads().contains(roadId)){
-                        int v = Math.min(car.getSpeed(), road.getSpeed());
-                        double weight = road.getLength() / v / 1.0 + i;
-                        neighbors.put(roadId,weight);
+                    for (Edge edge : path.getEdges()){
+                        if (edge.getToNode().equals(roadToId)) {
+                            weight += 1;
+                        }
                     }
                     i++;
                 }
-            }else {
-                int v = Math.min(car.getSpeed(), road.getSpeed());
-                double weight = road.getLength() / v / 1.0;
-                neighbors.put(roadId, weight);
+                neighbors.put(roadToId, weight);
+            } else {
+                neighbors.put(roadToId, weight);
             }
 
         }

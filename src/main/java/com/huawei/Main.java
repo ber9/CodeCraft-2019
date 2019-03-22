@@ -5,6 +5,8 @@ import com.huawei.graph.Edge;
 import com.huawei.graph.Graph;
 import com.huawei.graph.ksp.LazyEppstein;
 import com.huawei.graph.util.Path;
+import com.huawei.util.CarComparator;
+import com.huawei.util.ParameterOptimization;
 import com.huawei.util.ReadUtil;
 import org.apache.log4j.Logger;
 
@@ -17,6 +19,7 @@ import java.util.*;
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class);
     private static final int NUM_OF_CARS = 20;
+
     public static void main(String[] args) {
         if (args.length != 4) {
             logger.error("please input args: inputFilePath, resultFilePath");
@@ -59,7 +62,7 @@ public class Main {
             answer.createNewFile();
             FileWriter writer = new FileWriter(answer);
             BufferedWriter out = new BufferedWriter(writer);
-            startCarsAtOneTime(paths,NUM_OF_CARS);
+            ParameterOptimization.startCarsAtOneTime(paths, NUM_OF_CARS);
             for (Path path : paths) {
                 String carId = path.getCarId();
                 String finalPath = carId;
@@ -82,18 +85,15 @@ public class Main {
         Graph graph = new Graph(roadPath);
         List<Car> cars = new ReadUtil().readCarFile(carPath);
         List<List<Path>> carPaths = new ArrayList<>();
+        List<List<Path>> originCarPaths = new ArrayList<>();
         HashMap<String, String> roadsId = graph.getRoadsId();
-        Collections.sort(cars, new Comparator<Car>() {
-            @Override
-            public int compare(Car o1, Car o2) {
-                return o1.getPlanTime() - o2.getPlanTime();
-            }
-        });
+        Collections.sort(cars, new CarComparator());
         for (Car car : cars) {
 //            graph.updateWeight(car);
-            graph.updateWeight(car,carPaths,NUM_OF_CARS);
+            graph.updateWeight(car, originCarPaths, 30);
             List<Path> paths = kShortestPath(graph, car, K);
             List<Path> formatPaths = new LinkedList<>();
+            List<Path> originPaths = new LinkedList<>();
             String roadId = null;
             for (int i = 0; i < paths.size(); i++) {
                 Path path = new Path();
@@ -104,11 +104,13 @@ public class Main {
                 }
                 path.setTotalCost(oPath.getTotalCost());
                 path.setCarId(car.getId());
-                path.setStartTime(car.getPlanTime());
+                path.setSpeed(car.getSpeed());
                 path.setStartTime(car.getPlanTime());
                 formatPaths.add(path);
+                originPaths.add(oPath);
             }
             carPaths.add(formatPaths);
+            originCarPaths.add(originPaths);
         }
         long endTime = System.currentTimeMillis();
         System.out.println("kPaths时间:'" + (endTime - stTime) + "'");
@@ -122,27 +124,4 @@ public class Main {
         return ksp;
     }
 
-    /**
-     * 每一次同一个时间的一起出发20辆，其他的调度时间每numOfCars次加1
-     * @param paths
-     * @param numOfCars
-     */
-    private static void startCarsAtOneTime(List<Path> paths, int numOfCars){
-        int i = 0,j=0;
-        Collections.sort(paths, new Comparator<Path>() {
-            @Override
-            public int compare(Path o1, Path o2) {
-                return o1.getStartTime() - o2.getStartTime();
-            }
-        });
-        for (Path path : paths){
-            if (j < numOfCars){
-                path.setStartTime(path.getStartTime() + i);
-            }else {
-                i++;
-                j = 0;
-            }
-            j++;
-        }
-    }
 }
