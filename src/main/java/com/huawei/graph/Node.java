@@ -83,17 +83,18 @@ public class Node {
             String to = (String) it.next();
             Road road = roads.get(to);
             int v = Math.min(car.getSpeed(), road.getSpeed());
-            double weight = road.getLength() / v / 1.0;
+            double weight = road.getLength() / 1.0 / v;
             neighbors.put(to, weight);
         }
     }
 
-    public void updateWeight(Car car, List<List<Path>> carPaths, int numOfCars) {
-        int i = 1;
+
+    public void updateWeight(Car car, List<List<Path>> carPaths, int numOfCars, double WEIGHT_RATIO) {
         for (String roadToId : getAdjacencyList()) {
+            int i = 1;
             Road road = roads.get(roadToId);
-            int v = Math.min(car.getSpeed(), road.getSpeed());
-            double weight = road.getLength() / v / 1.0;
+            int v = Math.min(road.getSpeed(),car.getSpeed());
+            double weight = road.getLength() / 1.0 / v;
             if (carPaths.size() > numOfCars) {
                 // 每次只考虑前numOfCars的车对路径权重的影响
                 int len = carPaths.size();
@@ -102,9 +103,10 @@ public class Node {
                     if (i >= numOfCars) {
                         break;
                     }
-                    for (Edge edge : path.getEdges()){
-                        if (edge.getToNode().equals(roadToId)) {
-                            weight += 1;
+                    for (Edge edge : path.getEdges()) {
+                        if (edge.getToNode().equals(roadToId) && edge.getFromNode().equals(road.getFrom())) {
+                            double nums = road.getChannel();
+                            weight += 1.0/nums;
                         }
                     }
                     i++;
@@ -113,7 +115,6 @@ public class Node {
             } else {
                 neighbors.put(roadToId, weight);
             }
-
         }
     }
 

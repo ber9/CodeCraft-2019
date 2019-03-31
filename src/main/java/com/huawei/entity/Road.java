@@ -20,6 +20,9 @@ public class Road {
         this.isDuplex = isDuplex;
     }
 
+    public Road() {
+    }
+
     public String getId() {
         return id;
     }

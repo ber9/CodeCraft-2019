@@ -1,7 +1,9 @@
 package com.huawei.graph.util;
 
+import com.huawei.entity.Road;
 import com.huawei.graph.*;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class Path implements Cloneable, Comparable<Path> {
     private LinkedList<Edge> edges;
     private LinkedList<String> roads;
+    private LinkedList<Road> roadEntity;
     private String carId;
     private int speed;
     private int startTime;
@@ -22,6 +25,7 @@ public class Path implements Cloneable, Comparable<Path> {
     public Path() {
         edges = new LinkedList<Edge>();
         roads = new LinkedList<String>();
+        roadEntity = new LinkedList<Road>();
         totalCost = 0;
     }
 
@@ -40,9 +44,13 @@ public class Path implements Cloneable, Comparable<Path> {
         }
     }
 
-    public Path(LinkedList<Edge> edges,LinkedList<String> roads) {
+    public Path(LinkedList<Edge> edges,LinkedList<String> roads,String carId,int speed,int startTime,int fitness) {
         this.edges = edges;
         this.roads = roads;
+        this.carId = carId;
+        this.speed = speed;
+        this.startTime = startTime;
+        this.fitness = fitness;
         totalCost = 0;
         for (Edge edge : edges) {
             totalCost += edge.getWeight();
@@ -52,6 +60,18 @@ public class Path implements Cloneable, Comparable<Path> {
     public Path(LinkedList<Edge> edges, double totalCost) {
         this.edges = edges;
         this.totalCost = totalCost;
+    }
+
+    public LinkedList<Road> getRoadEntity() {
+        return roadEntity;
+    }
+
+    public void setRoadEntity(LinkedList<Road> roadEntity) {
+        this.roadEntity = roadEntity;
+    }
+
+    public void addRoadEntity(Road road){
+        roadEntity.add(road);
     }
 
     public LinkedList<Edge> getEdges() {
@@ -230,13 +250,18 @@ public class Path implements Cloneable, Comparable<Path> {
     public Path clone() {
         LinkedList<Edge> edges = new LinkedList<Edge>();
         LinkedList<String> roads = new LinkedList<>();
+        String carId = this.carId;
+        int speed = this.speed;
+        int startTime = this.startTime;
+        int fitness = this.fitness;
+
         for (Edge edge : this.edges) {
             edges.add(edge.clone());
         }
         for(String road:this.roads){
             roads.add(road);
         }
-        return new Path(edges, roads);
+        return new Path(edges, roads,carId,speed,startTime,fitness);
     }
 
     public Path shallowClone() {

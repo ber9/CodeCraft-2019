@@ -112,9 +112,9 @@ public class Graph {
         }
     }
 
-    public void updateWeight(Car car, List<List<Path>> paths, int numOfCars){
+    public void updateWeight(Car car, List<List<Path>> paths, int numOfCars, double WEIGHT_RATIO){
         for (Node node : nodes.values()) {
-            node.updateWeight(car,paths,numOfCars);
+            node.updateWeight(car,paths,numOfCars,WEIGHT_RATIO);
         }
     }
 

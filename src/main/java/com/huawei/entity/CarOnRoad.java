@@ -14,6 +14,7 @@ public class CarOnRoad {
     private int position;
     private int startTime;
     private Queue<String> path;//车辆的规划路径
+    private Channel channel;
 
     public CarOnRoad(String roadId, Car car, CarStatus carStatus, int position, int startTime, Queue<String> path) {
         this.roadId = roadId;
@@ -22,6 +23,27 @@ public class CarOnRoad {
         this.position = position;
         this.startTime = startTime;
         this.path = path;
+    }
+
+    public CarOnRoad(String roadId, Car car, CarStatus carStatus, int position, int startTime, Queue<String> path, Channel channel) {
+        this.roadId = roadId;
+        this.car = car;
+        this.carStatus = carStatus;
+        this.position = position;
+        this.startTime = startTime;
+        this.path = path;
+        this.channel = channel;
+    }
+
+    public CarOnRoad() {
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
     public String getRoadId() {
